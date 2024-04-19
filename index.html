@@ -31,13 +31,15 @@
 //----------------------------------------------------------------------------
 
          function addAgenda(){
-            const nome = prompt("\nInforme nome para contato:" ) + "\n";
-            const email = prompt("\nInforme email para contato:") + "\n";
-            const numero = parseInt(prompt("\nInforme número para contato:" )) + "\n";
             
-            // const date = new date();
-            // const infoData = (${});
+            const date = new Date();
+            const formData = date.toLocaleDateString() + "\n" + date.toLocaleTimeString();
 
+            const nome = prompt("\nInforme nome para contato:" ) + "\n" + formData + "\n\n";
+            const email = prompt("\nInforme email para contato:") + "\n" + formData + "\n\n";
+            const numero = parseInt(prompt("\nInforme número para contato:" )) + "\n" + formData + "\n\n";
+
+            
             if (nome == "" || email == "" || numero == "") {
                 alert("Insira as respectivas informações para contato");
 
@@ -47,6 +49,9 @@
             arrAgenda.push({nome, email, numero})
 
             console.log(arrAgenda);
+
+            
+            
          }
 
 //------------------------------------------------------------------------------
