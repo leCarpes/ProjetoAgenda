@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt- BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Letícia Carpes">
+    <title>Projeto CRUD Agenda </title>
+</head>
+<body>
+
+    <script>
+
+        let arrAgenda  = [];
+
+        function menuAgenda(){
+
+             return parseInt(prompt(
+
+             `
+                 MENU AGENDA
+             [1] -> Cadastrar Contato
+             [2] -> Listar Contato
+             [3] -> Atualizar Contato
+             [4] -> Deletar Contato
+             [5] -> Sair do Programa
+
+             `
+             ));
+           
+         }
+//----------------------------------------------------------------------------
+
+         function addAgenda(){
+            const nome = prompt("\nInforme nome para contato:" ) + "\n";
+            const email = prompt("\nInforme email para contato:") + "\n";
+            const numero = parseInt(prompt("\nInforme número para contato:" )) + "\n";
+            
+            // const date = new date();
+            // const infoData = (${});
+
+            if (nome == "" || email == "" || numero == "") {
+                alert("Insira as respectivas informações para contato");
+
+                return;
+            }
+
+            arrAgenda.push({nome, email, numero})
+
+            console.log(arrAgenda);
+         }
+
+//------------------------------------------------------------------------------
+
+         function listAgenda() {
+            let listCont = "";
+
+            arrAgenda.forEach((cont) => {
+                listCont += `\n Nome: ${cont.nome}, Email: ${cont.email}, Número: ${cont.numero}\n`
+
+            })
+
+            alert("Lista de contatos na agenda:" + listCont);          
+            
+         }
+//--------------------------------------------------------------------------------
+
+         function upadateAgenda(){
+            const findAgenda = prompt("Informe o email para atualizar o contato:")
+
+            const contatoEncontrado = arrAgenda.find(cont =>
+                cont.email == findAgenda
+            
+            );
+
+            if (contatoEncontrado == "") {
+                alert("Nenhuma informção encontrada");
+                
+                return;
+            }
+
+
+            const novoNomeContato = prompt("Qual o nome para novo contato:");
+            const novoEmailContato = prompt("Qual o novo email para contato:");
+            const novoNumeroContato = prompt("Qual o novo número para contato:");
+
+            if (novoNomeContato) {
+                contatoEncontrado.nome = novoNomeContato;
+                
+            }
+
+            if (novoEmailContato) {
+                contatoEncontrado.email = novoEmailContato;
+                
+            }
+
+            if (novoNumeroContato) {
+                contatoEncontrado.numero = novoNumeroContato;
+                
+            }
+
+            alert("Contato atualizado com sucesso!")
+
+         }
+
+//-------------------------------------------------------------------------
+         function deleteAgenda() {
+            const emailDelete = prompt("Informe o email que será deletado:");
+
+            const emailDeleteFind = arrAgenda.findIndex(contato =>
+                contato.email === emailDelete
+        );
+
+
+        if (emailDeleteFind === -1) {
+            alert("Contato não encontrado");
+            return;
+            
+        }
+
+        const confirm = window.confirm("Você deja remover o usuário " + emailDelete + "?");
+
+
+        if (confirm) {
+                    arrAgenda.splice(emailDeleteFind, 1);
+                }
+
+                alert("Usuário deletado com sucesso!")
+        
+            
+        }
+
+//------------------------------------------------------------------------------------
+
+let loopBreak = true
+
+while (loopBreak) {
+    switch (menuAgenda()) {
+    case 1:
+        addAgenda();
+        break;
+
+    case 2:
+        listAgenda();
+        break;
+
+    case 3:
+        upadateAgenda();
+        break;
+
+    case 4:
+        deleteAgenda();
+        break;
+
+    case 5:
+        alert("O usuário estará saindo do programa, deseja continuar?")
+        loopBreak = false
+        break;
+
+        default:
+            alert("Opção inválida");
+            break;
+}
+}
+
+            
+    </script>
+    
+</body>
+</html>
